@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
 
         if(soliderGroup.GetComponent<SoliderGroup>().enabled == false)
         {
-            EditorApplication.isPaused = true;
+            //EditorApplication.isPaused = true;
+
+            Time.timeScale = 0f;
         }
         
         soliderGroup.Translate(new Vector3(point.x, soliderGroup.position.y, soliderGroup.position.z) - soliderGroup.position, Space.Self);
