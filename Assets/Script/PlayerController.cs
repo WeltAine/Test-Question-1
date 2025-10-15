@@ -1,6 +1,7 @@
 using NewCode;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -30,12 +31,26 @@ public class PlayerController : MonoBehaviour
 
         if(soliderGroup.GetComponent<SoliderGroup>().enabled == false)
         {
-            //EditorApplication.isPaused = true;
+            
 
-            Time.timeScale = 0f;
+            StartCoroutine(Quit());
+
         }
         
         soliderGroup.Translate(new Vector3(point.x, soliderGroup.position.y, soliderGroup.position.z) - soliderGroup.position, Space.Self);
+
+    }
+
+    public IEnumerator Quit()
+    {
+        Time.timeScale = 0f;
+
+        for (int i = 0; i < 200; i++)
+        {
+            yield return null;
+        }
+
+        Application.Quit();
 
     }
 }
